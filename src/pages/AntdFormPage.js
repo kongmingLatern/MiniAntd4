@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from "react";
+import React, { Component } from "react";
 import { Form, Button, Input } from "antd";
 
 const FormItem = Form.Item;
