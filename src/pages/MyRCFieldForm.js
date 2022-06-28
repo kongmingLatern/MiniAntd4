@@ -25,7 +25,7 @@ export default function MyRCFieldForm(props) {
 
   return (
     <div>
-      <h3>MyRCFieldForm-Personal Form</h3>
+      <h3>MyRCFieldForm-Personal</h3>
       <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Field name="username" rules={[nameRules]}>
           <Input placeholder="input UR Username" />
