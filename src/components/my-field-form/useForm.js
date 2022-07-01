@@ -1,8 +1,15 @@
-import { useRef } from 'react'
+import {
+  useRef
+} from 'react'
 // 定义状态管理库
 class FormStore {
   constructor() {
     this.store = {} // 状态值：name: value
+    this.fieldEntities = []
+  }
+
+  registerFieldEntities = (entity) => {
+    this.fieldEntities.push(entity)
   }
 
   // get
@@ -25,6 +32,13 @@ class FormStore {
     }
     console.log("this.store", this.store);
     // 2. update Field
+    this.fieldEntities.forEach(entity => {
+      Object.keys(newStore).forEach(k => {
+        if (k === entity.props.name) {
+          entity.onStoreChange()
+        }
+      })
+    })
   }
 
 
@@ -32,7 +46,8 @@ class FormStore {
     return {
       getFieldsValue: this.getFieldsValue,
       getFieldValue: this.getFieldValue,
-      setFieldsValue: this.setFieldsValue
+      setFieldsValue: this.setFieldsValue,
+      registerFieldEntities: this.registerFieldEntities
     }
   }
 }
@@ -45,6 +60,5 @@ export default function useForm() {
     formRef.current = formStore
   }
 
-  return [formRef.current] 
+  return [formRef.current]
 };
- 
