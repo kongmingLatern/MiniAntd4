@@ -7,7 +7,11 @@ export default class Field extends Component {
   static contextType = FieldContext
 
   componentDidMount() {
-    this.context.registerFieldEntities(this)
+    this.unregister = this.context.registerFieldEntities(this)
+  }
+
+  componentWillUnmount() {
+    this.unregister()
   }
 
   onStoreChange = () => {
@@ -30,14 +34,12 @@ export default class Field extends Component {
         setFieldsValue({
           [name]: newValue
         })
-        console.log('newValue:', newValue);
         this.forceUpdate()
       }
     }
   }
 
   render() {
-    console.log('render');
     const {
       children
     } = this.props

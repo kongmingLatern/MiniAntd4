@@ -8,8 +8,15 @@ class FormStore {
     this.fieldEntities = []
   }
 
+  // 注册实例(forceUpdate)
+  // 注册与取消注册
+  // 订阅与取消订阅
   registerFieldEntities = (entity) => {
     this.fieldEntities.push(entity)
+    return () => {
+      this.fieldEntities = this.fieldEntities.filter(item => item !== entity)
+      delete this.store[entity.props.name]
+    }
   }
 
   // get
@@ -41,13 +48,17 @@ class FormStore {
     })
   }
 
+  submit = () => {
+    // 提交
+  }
 
   getForm = () => {
     return {
       getFieldsValue: this.getFieldsValue,
       getFieldValue: this.getFieldValue,
       setFieldsValue: this.setFieldsValue,
-      registerFieldEntities: this.registerFieldEntities
+      registerFieldEntities: this.registerFieldEntities,
+      submit: this.submit
     }
   }
 }
