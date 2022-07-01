@@ -38,7 +38,6 @@ class FormStore {
       ...this.store,
       ...newStore
     }
-    console.log("this.store", this.store);
     // 2. update Field
     this.fieldEntities.forEach(entity => {
       Object.keys(newStore).forEach(k => {
@@ -50,12 +49,28 @@ class FormStore {
   }
 
   setCallbacks = (callbacks) => {
-    this.callbacks = { callbacks, ...this.callbacks }
+    this.callbacks = { ...callbacks, ...this.callbacks }
+  }
+
+  // 校验
+  validate = () => {
+    let err = []
+    // TODO: 校验
+    return err
   }
 
   submit = () => {
     // 提交
-    console.log('提交');
+    const err = this.validate()
+    const { onFinish, onFinishFailed } = this.callbacks
+    if (err.length === 0) {
+      // 校验通过
+      onFinish(this.getFieldsValue())
+    } else {
+      // 校验不通过
+      onFinishFailed(err, this.getFieldValue())
+    }
+
   }
 
   getForm = () => {
@@ -64,7 +79,8 @@ class FormStore {
       getFieldValue: this.getFieldValue,
       setFieldsValue: this.setFieldsValue,
       registerFieldEntities: this.registerFieldEntities,
-      submit: this.submit
+      submit: this.submit,
+      setCallbacks: this.setCallbacks
     }
   }
 }

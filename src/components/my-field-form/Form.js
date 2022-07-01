@@ -1,6 +1,10 @@
 import FieldContext from "./FieldContext";
 
-export default function Form({ children, form }) {
+export default function Form({ children, form, onFinish, onFinishFailed }) {
+  form.setCallbacks({
+    onFinish,
+    onFinishFailed
+  })
   return (
     <form
       onSubmit={(e) => {
