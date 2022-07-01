@@ -4,7 +4,8 @@ export default function Form({ children, form }) {
   return (
     <form
       onSubmit={(e) => {
-        e.preventDefault();
+        e.preventDefault()
+        form.submit()
       }}>
       <FieldContext.Provider value={form}>
         {children}

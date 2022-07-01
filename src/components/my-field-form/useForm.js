@@ -6,6 +6,7 @@ class FormStore {
   constructor() {
     this.store = {} // 状态值：name: value
     this.fieldEntities = []
+    this.callbacks = {}
   }
 
   // 注册实例(forceUpdate)
@@ -48,8 +49,13 @@ class FormStore {
     })
   }
 
+  setCallbacks = (callbacks) => {
+    this.callbacks = { callbacks, ...this.callbacks }
+  }
+
   submit = () => {
     // 提交
+    console.log('提交');
   }
 
   getForm = () => {
