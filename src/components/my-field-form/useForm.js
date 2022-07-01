@@ -17,12 +17,14 @@ class FormStore {
   }
 
   // set
-  setFieldValue = (newStore) => {
+  setFieldsValue = (newStore) => {
+    // 1. update store
     this.store = {
       ...this.store,
       ...newStore
     }
-    console.log(`store:${this.store}`);
+    console.log("this.store", this.store);
+    // 2. update Field
   }
 
 
@@ -30,7 +32,7 @@ class FormStore {
     return {
       getFieldsValue: this.getFieldsValue,
       getFieldValue: this.getFieldValue,
-      setFieldValue: this.setFieldValue
+      setFieldsValue: this.setFieldsValue
     }
   }
 }
