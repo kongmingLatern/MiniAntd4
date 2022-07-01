@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { React,Component } from 'react'
 
 export default class Field extends Component {
   getControlled = () => {
@@ -16,6 +16,7 @@ export default class Field extends Component {
 
   render() {
     const { children } = this.props
-    return children
+    const returnChildNode = React.cloneElement(children, this.getControlled())
+    return returnChildNode
   }
 }
