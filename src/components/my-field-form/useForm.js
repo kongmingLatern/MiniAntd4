@@ -57,6 +57,7 @@ class FormStore {
     let err = []
     // TODO: 校验
     this.fieldEntities.forEach(entity => {
+
       const { name, rules } = entity.props
 
       const value = this.getFieldValue(name)
@@ -96,13 +97,18 @@ class FormStore {
     }
   }
 }
-export default function useForm() {
+export default function useForm(form) {
   // 存值，在组件卸载之前指向的都是同一个值
   const formRef = useRef()
 
   if (!formRef.current) {
-    const formStore = new FormStore()
-    formRef.current = formStore
+    if (form) {
+      formRef.current = form
+    } else {
+      const formStore = new FormStore()
+      formRef.current = formStore.getForm()
+
+    }
   }
 
   return [formRef.current]

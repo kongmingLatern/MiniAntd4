@@ -1,7 +1,10 @@
 import FieldContext from "./FieldContext";
+import useForm from "./useForm";
 
 export default function Form({ children, form, onFinish, onFinishFailed }) {
-  form.setCallbacks({
+  // 适配类组件
+  const [formInstance] = useForm(form)
+  formInstance.setCallbacks({
     onFinish,
     onFinishFailed
   })
@@ -9,9 +12,9 @@ export default function Form({ children, form, onFinish, onFinishFailed }) {
     <form
       onSubmit={(e) => {
         e.preventDefault()
-        form.submit()
+        formInstance.submit()
       }}>
-      <FieldContext.Provider value={form}>
+      <FieldContext.Provider value={formInstance}>
         {children}
       </FieldContext.Provider>
     </form>
