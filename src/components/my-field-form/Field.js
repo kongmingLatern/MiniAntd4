@@ -43,6 +43,7 @@ export default class Field extends Component {
     const {
       children
     } = this.props
+    // this.getControlled(): React 元素的 props 属性值
     const returnChildNode = React.cloneElement(children, this.getControlled())
     return returnChildNode
   }

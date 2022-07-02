@@ -58,7 +58,13 @@ class FormStore {
     // TODO: 校验
     this.fieldEntities.forEach(entity => {
       const { name, rules } = entity.props
-      console.log(name, rules);
+
+      const value = this.getFieldValue(name)
+      let rule = rules[0]
+
+      if (rule && rule.required && (value === undefined || value === '')) {
+        err.push({ [name]: rule.message }, value)
+      }
     })
 
 
