@@ -56,6 +56,12 @@ class FormStore {
   validate = () => {
     let err = []
     // TODO: 校验
+    this.fieldEntities.forEach(entity => {
+      const { name, rules } = entity.props
+      console.log(name, rules);
+    })
+
+
     return err
   }
 

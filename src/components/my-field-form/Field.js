@@ -17,6 +17,7 @@ export default class Field extends Component {
   onStoreChange = () => {
     this.forceUpdate()
   }
+
   getControlled = () => {
     const {
       getFieldValue,
@@ -34,7 +35,6 @@ export default class Field extends Component {
         setFieldsValue({
           [name]: newValue
         })
-        this.forceUpdate()
       }
     }
   }
