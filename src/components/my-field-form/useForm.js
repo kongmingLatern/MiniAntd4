@@ -37,8 +37,7 @@ class FormStore {
     this.store = {
       ...this.store,
       ...newStore
-    }
-    // 2. update Field
+    } // 2. update Field
     this.fieldEntities.forEach(entity => {
       Object.keys(newStore).forEach(k => {
         if (k === entity.props.name) {
@@ -50,7 +49,7 @@ class FormStore {
 
   setCallbacks = (callbacks) => {
     // 接收回调函数 onFinish && onFinishFailed
-    this.callbacks = { ...callbacks, ...this.callbacks }
+    this.callbacks = { ...this.callbacks, ...callbacks }
   }
 
   // 校验
