@@ -49,6 +49,7 @@ class FormStore {
   }
 
   setCallbacks = (callbacks) => {
+    // 接收回调函数 onFinish && onFinishFailed
     this.callbacks = { ...callbacks, ...this.callbacks }
   }
 
